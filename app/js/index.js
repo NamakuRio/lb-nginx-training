@@ -1,5 +1,4 @@
 const express = require("express");
-const { locale } = require("moment");
 const moment = require("moment");
 
 const PORT = process.argv[2] || 3021;
@@ -25,18 +24,18 @@ const commonHandler = (req, res) => {
     res.send(JSON.stringify(data));
 };
 app.get("/", commonHandler);
-app.get("/ipHash", commonHandler);
-app.get("/leastConn", commonHandler);
-app.get("/metadata", (req, res) => {
+app.get("/ip-hash", commonHandler);
+app.get("/least-conn", commonHandler);
+app.get("/meta-data", (req, res) => {
     const timestamp = moment().format("MMMM Do YYYY, h:mm:ss a");
     const data = {
         description: "Just an example metadata.",
-        external_url:
-            "https://avatars.githubusercontent.com/u/34277951?s=60&v=4",
-        image: "https://avatars.githubusercontent.com/u/34277951?s=60&v=4",
+        external_url: "https://avatars.githubusercontent.com/u/34277951?&u=e35a3b2b6bc24f66e760400f44768e9e2223578e",
+        image: "https://avatars.githubusercontent.com/u/34277951?&u=e35a3b2b6bc24f66e760400f44768e9e2223578e",
         name: "Profile Picture",
         timestamp,
     };
+    res.setHeader("Content-Type", "application/json");
     res.send(JSON.stringify(data));
 });
 app.listen(PORT, () => console.log(`This app is running on ${PORT}`));
